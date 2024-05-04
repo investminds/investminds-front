@@ -12,5 +12,12 @@
   "race_engage": "Engage",
   "race_engage_description": "Incentive a repetição de negócios",
   "race_finish": "Finalizar",
-  "race_finish_description": "Revise e envie"
+  "race_finish_description": "Revise e envie",
+
+  "pillar_planning": "Planejamento e governança",
+  "pillar_goals": "Metas e medição",
+  "pillar_media": "Meios de comunicação",
+  "pillar_content": "Conteúdo",
+  "pillar_xp": "Experiência",
+  "pillar_conversational": "Mensagens de conversação"
 }
