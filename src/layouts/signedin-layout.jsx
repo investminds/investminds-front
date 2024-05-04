@@ -5,8 +5,10 @@ const SignedInLayout = () => {
   return (
     <>
       <Navbar />
-      <div className="container h-screen bg-green-200">
-        <Outlet />
+      <div className="flex justify-center bg-gray-100 h-svh">
+        <div className="container flex-grow py-4">
+          <Outlet />
+        </div>
       </div>
     </>
   );
