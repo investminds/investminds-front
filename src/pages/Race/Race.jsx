@@ -33,7 +33,7 @@ const getStepComponent = (step) => {
     case 6:
       return <Finish />;
     default:
-      return <h1>Ooops... Step not found.</h1>;
+      return <h1>Step not found.</h1>;
   }
 };
 
