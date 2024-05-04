@@ -14,43 +14,7 @@ import Act from "./components/Act";
 import Convert from "./components/Convert";
 import Engage from "./components/Engage";
 import Finish from "./components/Finish";
-const steps = [
-  {
-    title: "About",
-    description: "Tell us about your company",
-    icon: <LuBadgeInfo />,
-  },
-  {
-    title: "Plan",
-    description: "Define your strategy",
-    icon: <LuClipboardSignature />,
-  },
-  {
-    title: "Reach",
-    description: "Grow your audience",
-    icon: <AiOutlineGlobal />,
-  },
-  {
-    title: "Act",
-    description: "Prompt interactions, subscribers and leads",
-    icon: <TbHandClick />,
-  },
-  {
-    title: "Convert",
-    description: "Achieve sales online oroffline",
-    icon: <MdOutlinePriceChange />,
-  },
-  {
-    title: "Engage",
-    description: "Encourage repeat business",
-    icon: <GrGroup />,
-  },
-  {
-    title: "Finish",
-    description: "Review and send it",
-    icon: <AiOutlineFileDone />,
-  },
-];
+import { useTranslation } from "react-i18next";
 
 const getStepComponent = (step) => {
   switch (step) {
@@ -75,8 +39,48 @@ const getStepComponent = (step) => {
 
 const Race = () => {
   const [currentStep, setCurrentStep] = useState(0);
+  const { t } = useTranslation();
+
+  const steps = [
+    {
+      title: t("race_about"),
+      description: t("race_about_description"),
+      icon: <LuBadgeInfo />,
+    },
+    {
+      title: t("race_plan"),
+      description: t("race_plan_description"),
+      icon: <LuClipboardSignature />,
+    },
+    {
+      title: t("race_reach"),
+      description: t("race_reach_description"),
+      icon: <AiOutlineGlobal />,
+    },
+    {
+      title: t("race_act"),
+      description: t("race_act_description"),
+      icon: <TbHandClick />,
+    },
+    {
+      title: t("race_convert"),
+      description: t("race_convert_description"),
+      icon: <MdOutlinePriceChange />,
+    },
+    {
+      title: t("race_engage"),
+      description: t("race_engage_description"),
+      icon: <GrGroup />,
+    },
+    {
+      title: t("race_finish"),
+      description: t("race_finish_description"),
+      icon: <AiOutlineFileDone />,
+    },
+  ];
+
   return (
-    <div className="grid p-4 bg-white rounded-md gird-cols-12">
+    <div className="grid p-8 bg-white rounded-md gird-cols-12">
       <div className="items-center col-span-12">
         <Steps
           items={steps}
