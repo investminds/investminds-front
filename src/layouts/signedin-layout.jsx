@@ -5,7 +5,9 @@ const SignedInLayout = () => {
   return (
     <>
       <Navbar />
-      <Outlet />
+      <div className="container h-screen bg-green-200">
+        <Outlet />
+      </div>
     </>
   );
 };
