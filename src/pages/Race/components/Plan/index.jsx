@@ -1,7 +1,7 @@
 import { Grid, FormControlLabel, FormGroup, Checkbox, FormLabel, Button } from "@mui/material"
 import React from 'react'
-import Pilars from "./Pilars";
-import AiText from "./AiText";
+import Pilars from "../Pilars";
+import AiText from "../AiText";
 
 const Plan = () => {
   return (
