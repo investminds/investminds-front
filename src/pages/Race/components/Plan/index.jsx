@@ -1,32 +1,48 @@
-import { Grid, FormControlLabel, FormGroup, Checkbox, FormLabel, Button } from "@mui/material"
-import React from 'react'
-import Pilars from "../Pilars";
-import AiText from "../AiText";
+import { useState } from "react";
+import PillarsSelector from "/src/components/PillarsSelector";
+import { useDispatch, useSelector } from "react-redux";
+import Planning from "./components/forms/Planning";
+import { useTranslation } from "react-i18next";
+import { updateField } from "/src/store/reducers/raceForm";
+
+const getForm = (step, plan, handleSubmit) => {
+  switch (step) {
+    case 0:
+      return <Planning fields={plan.planning} handleSubmit={handleSubmit} />;
+    default:
+      return <h1>Ooops... Step not found.</h1>;
+  }
+};
 
 const Plan = () => {
+  const dispatch = useDispatch();
+
+  const { t } = useTranslation();
+  const { plan } = useSelector((state) => state.raceForm);
+  const [currentPillar, setCurrentPillar] = useState(0);
+
+  const handleSubmit = (field, value) =>
+    dispatch(updateField({ field, value }));
+
   return (
-    <>
-      <Grid>
-        <Pilars />
-        <FormGroup>
-          <FormLabel component="legend">Audit of current capabilities</FormLabel>
-          <FormControlLabel required control={<Checkbox />} label="Do you have a defined, integrated digital marketing plan?" />
-          <FormControlLabel required control={<Checkbox />} label="Do you have a defined marketing strategy?" />
-          <FormControlLabel required control={<Checkbox />} label="Do you have a digital transformation change management plan?" />
-          <FormControlLabel required control={<Checkbox />} label="Have you conducted an employee skills gap analysis?" />
-          <FormControlLabel required control={<Checkbox />} label="Do you have employee development plans in place?" />
-          <FormControlLabel required control={<Checkbox />} label="Is your AI and MarTech stack defined?" />
-        </FormGroup>
-        <Grid>
-          <Grid>
-            <Button>Send Request</Button>
-          </Grid>
-          <Grid>
-            <AiText />
-          </Grid>
-        </Grid>
-      </Grid>
-    </>
+    <div className="grid grid-cols-12 mt-8">
+      <div className="col-span-12">
+        <PillarsSelector
+          value={currentPillar}
+          handleChange={setCurrentPillar}
+        />
+        <div className="col-span-12 mt-4 text-gray-800 text-md">
+          {t("race_audit_of_current_capabilities")}
+        </div>
+        <div className="col-span-12 text-sm text-gray-400">
+          {t("race_check_activities")}
+        </div>
+
+        <div className="col-span-12 mt-4">
+          {getForm(currentPillar, plan, handleSubmit)}
+        </div>
+      </div>
+    </div>
   );
 };
 
