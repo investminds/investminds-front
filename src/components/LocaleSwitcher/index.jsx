@@ -11,7 +11,7 @@ const options = Object.entries(supoortedLocales).map(([code, name]) => ({
 const LocaleSwitcher = () => {
   const { i18n } = useTranslation();
   return (
-    <div className="flex items-center justify-center p-2 bg-gray-100 rounded-md">
+    <div className="flex items-center justify-center w-full h-full p-2 bg-gray-100 rounded-md">
       <MdGTranslate />
       <Select
         value={i18n.resolvedLanguage}
