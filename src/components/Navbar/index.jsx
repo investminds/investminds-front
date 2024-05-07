@@ -1,8 +1,10 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import logo from "/src/assets/logo.svg";
 import LocaleSwitcher from "../LocaleSwitcher";
 
 const Navbar = () => {
+  const { pathname } = useLocation();
+
   return (
     <nav className="grid h-12 grid-cols-12 bg-white shadow-md max-h-12">
       <div className="col-span-3">
@@ -10,14 +12,21 @@ const Navbar = () => {
       </div>
       <div className="col-span-6 ">
         <ul className="flex items-center justify-center w-full h-full space-x-4 text-md">
-          <Link to="/" className="hover:text-blue-900">
+          <Link
+            to="/"
+            className={`hover:text-blue-400 ${
+              pathname === "/" && "text-blue-400"
+            }`}
+          >
             <li>Home</li>
           </Link>
-          <Link to="/about" className="hover:text-blue-900">
-            <li>Sobre</li>
-          </Link>
-          <Link to="/contact" className="hover:text-blue-900">
-            <li>Contato</li>
+          <Link
+            to="/race"
+            className={`hover:text-blue-400 ${
+              pathname === "/race" && "text-blue-400"
+            }`}
+          >
+            <li>Race</li>
           </Link>
         </ul>
       </div>
