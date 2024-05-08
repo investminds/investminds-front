@@ -111,5 +111,14 @@
   "engage_pillar_conversational_Newsletters": "Suas newsletters para clientes estão segmentadas e otimizadas?",
   "engage_pillar_conversational_EmailComm": "Você está usando comunicações de e-mail segmentadas para clientes?",
   "engage_pillar_conversational_CommPref": "Você está usando um centro de preferências de comunicação do cliente e opções de privacidade?",
-  "engage_pillar_conversational_SocialCommunities": "Você está usando eficazmente as mídias sociais para desenvolver comunidades de clientes?"
+  "engage_pillar_conversational_SocialCommunities": "Você está usando eficazmente as mídias sociais para desenvolver comunidades de clientes?",
+
+  "about_companyDescription": "Conte-nos um pouco sobre sua empresa! Isso vai nos ajudar a entender melhor seu contexto e te ajudar com mais precisão.",
+  "about_companyName": "Qual o nome da sua empresa?",
+  "about_companySector": "Em que setor sua empresa atua?",
+  "about_targetAudience": "Quem é o público-alvo?",
+  "marketingObjectives": "Quais objetivos de marketing específicos você deseja alcançar com o framework RACE?",
+  "additionalInfo": "Alguma informação adicional que você gostaria de fornecer?",
+
+  "summaryMessage": "Esse é um resumo das suas respostas e o que sugerimos que pode ser feito para alcançar seus objetivos! Você pode agora revisar seu projeto e, se estiver tudo certo, finalizá-lo!"
 }

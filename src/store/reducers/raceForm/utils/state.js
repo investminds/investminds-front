@@ -1,4 +1,13 @@
 export default {
+  isLoading: false,
+  about: {
+    companyName: "",
+    about_companySector: "",
+    about_targetAudience: "",
+    marketingObjectives: "",
+    additionalInfo: "",
+    raceMesages: [""],
+  },
   plan: {
     planning: {
       intDigiPlan: false,

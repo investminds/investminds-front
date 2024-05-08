@@ -111,5 +111,14 @@
   "engage_pillar_conversational_Newsletters": "Are your customer newsletters targeted and optimized?",
   "engage_pillar_conversational_EmailComm": "Are you using targeted customer email communications?",
   "engage_pillar_conversational_CommPref": "Are you using a customer communications preference centre and privacy options?",
-  "engage_pillar_conversational_SocialCommunities": "Are you effectively using social media to develop customer communities?"
+  "engage_pillar_conversational_SocialCommunities": "Are you effectively using social media to develop customer communities?",
+
+  "about_companyDescription": "Tell us a little about your company! This will help us better understand your context and assist you more accurately.",
+  "about_companyName": "What is your company name?",
+  "about_companySector": "What sector does your company operate in?",
+  "about_targetAudience": "Who is your target audience?",
+  "marketingObjectives": "What specific marketing goals do you want to achieve with the RACE framework?",
+  "additionalInfo": "Any additional information you would like to provide?",
+
+  "summaryMessage": "This is a summary of your responses and what we suggest can be done to achieve your goals! You can now review your project and, if everything is correct, finalize it!"
 }
