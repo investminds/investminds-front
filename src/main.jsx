@@ -5,11 +5,15 @@ import "./index.css";
 import "./config/translator.js";
 import { Provider } from "react-redux";
 import store from "./store/index.js";
+import { FacebookProvider } from "react-facebook";
+const APP_ID = import.meta.env.VITE_FACEBOOK_APP_ID;
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <FacebookProvider appId={APP_ID} version="v20.0">
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </FacebookProvider>
   </React.StrictMode>
 );
