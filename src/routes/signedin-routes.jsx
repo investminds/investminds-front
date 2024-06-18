@@ -4,6 +4,7 @@ import SignedInLayout from "../layouts/signedin-layout";
 import Facebook from "../pages/Facebook/Facebook"
 import About from "../pages/About/About";
 import Login from "../pages/Login/Login";
+import SignUp from "../pages/SignUp/SignUp";
 
 const signedInRouter = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const signedInRouter = createBrowserRouter([
       {
         path: "/login",
         element: <Login />,
+      },
+      {
+        path: "/signup",
+        element: <SignUp />,
       },
       {
         path: "/*",

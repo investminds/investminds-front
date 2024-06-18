@@ -44,6 +44,14 @@ const Navbar = () => {
           >
             <li>Login</li>
           </Link>
+          <Link
+            to="/signup"
+            className={`hover:text-blue-400 ${
+              pathname === "/signup" && "text-blue-400"
+            }`}
+          >
+            <li>Cadastre-se</li>
+          </Link>
         </ul>
       </div>
       <div className="flex items-center justify-center col-span-3 space-x-2 ">
