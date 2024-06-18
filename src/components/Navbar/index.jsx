@@ -36,6 +36,14 @@ const Navbar = () => {
           >
             <li>Cadastro Facebook</li>
           </Link>
+          <Link
+            to="/login"
+            className={`hover:text-blue-400 ${
+              pathname === "/login" && "text-blue-400"
+            }`}
+          >
+            <li>Login</li>
+          </Link>
         </ul>
       </div>
       <div className="flex items-center justify-center col-span-3 space-x-2 ">
