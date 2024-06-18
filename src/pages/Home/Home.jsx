@@ -1,46 +1,30 @@
-import { useEffect } from "react";
-import {  LoginButton, Page, useFacebook, useLoginStatus, useProfile } from 'react-facebook';
-
-const APP_ID = import.meta.env.VITE_FACEBOOK_APP_ID;
+import React from "react";
+import { Link } from "react-router-dom";
+import ImgHome from "../../assets/home-image.svg";
 
 const Home = () => {
-  console.log(APP_ID);
-
-  async function handleSuccess(response) {
-    try {
-      console.log(`response`, response)
-      const { authResponse } = response
-      const { userID} = authResponse
-      console.log(authResponse)
-      FB.api(
-        `/${userID}/accounts`,
-        function (response) {
-          if (response && !response.error) {
-            console.log('pages', response)
-          }
-        }
-    )
-    } catch (error) {
-      console.log(error);     }
-  }
-
-  function handleError(error) {
-    console.log(error);
-  }
-  
   return (
     <>
-      <section className="hero">
-        <h1>Welcome To Home Page</h1>
-        <LoginButton
-          scope="public_profile,email,pages_show_list,pages_read_engagement,pages_manage_posts"
-          onError={handleError}
-          onSuccess={handleSuccess}
-        >
-          Login via Facebook
-        </LoginButton>
+      <section className="hero flex justify-center items-center">
+        <div className="w-2/5">
+          <h1 className="text-6xl pt-2 font-mono">InvestMinds</h1>
+          <h2 className="text-3xl pt-2">Mais que um clube, um investimento</h2>
+          <p className="pt-6">
+            O clube por assinatura que vai revolucionar sua forma de investir,
+            desde a compra de serviços até a venda de produtos!
+          </p>
+          <Link to="/about">
+            <button className="mt-4 px-6 py-2 bg-blue-500 text-white font-semibold rounded-lg shadow-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75">
+              Saiba Mais!
+            </button>
+          </Link>
+        </div>
+        <div className="w-3/5">
+          <img src={ImgHome} className="w-full" alt="imagem de investimento" />
+        </div>
       </section>
     </>
   );
 };
+
 export default Home;

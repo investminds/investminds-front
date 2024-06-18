@@ -21,12 +21,20 @@ const Navbar = () => {
             <li>Home</li>
           </Link>
           <Link
-            to="/race"
+            to="/about"
             className={`hover:text-blue-400 ${
-              pathname === "/race" && "text-blue-400"
+              pathname === "/about" && "text-blue-400"
             }`}
           >
-            <li>Race</li>
+            <li>Sobre</li>
+          </Link>
+          <Link
+            to="/facebook"
+            className={`hover:text-blue-400 ${
+              pathname === "/facebook" && "text-blue-400"
+            }`}
+          >
+            <li>Cadastro Facebook</li>
           </Link>
         </ul>
       </div>
