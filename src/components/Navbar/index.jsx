@@ -6,48 +6,48 @@ const Navbar = () => {
   const { pathname } = useLocation();
 
   return (
-    <nav className="grid h-12 grid-cols-12 bg-white shadow-md max-h-12">
+    <nav className="grid h-16 grid-cols-12 bg-white shadow-md max-h-16">
       <div className="col-span-3">
-        <img src={logo} className="h-12 p-2" alt="Logo do Raceit" />
+        <img src={logo} className="h-12 pt-3 pl-3" alt="Logo do Raceit" />
       </div>
       <div className="col-span-6 ">
         <ul className="flex items-center justify-center w-full h-full space-x-4 text-md">
           <Link
             to="/"
-            className={`hover:text-blue-400 ${
-              pathname === "/" && "text-blue-400"
+            className={`hover:text-[#FF4773] ${
+              pathname === "/" && "text-[#FF4773]"
             }`}
           >
             <li>Home</li>
           </Link>
           <Link
             to="/about"
-            className={`hover:text-blue-400 ${
-              pathname === "/about" && "text-blue-400"
+            className={`hover:text-[#FF4773] ${
+              pathname === "/about" && "text-[#FF4773]"
             }`}
           >
             <li>Sobre</li>
           </Link>
           <Link
             to="/facebook"
-            className={`hover:text-blue-400 ${
-              pathname === "/facebook" && "text-blue-400"
+            className={`hover:text-[#FF4773] ${
+              pathname === "/facebook" && "text-[#FF4773]"
             }`}
           >
             <li>Cadastro Facebook</li>
           </Link>
           <Link
             to="/login"
-            className={`hover:text-blue-400 ${
-              pathname === "/login" && "text-blue-400"
+            className={`hover:text-[#FF4773] ${
+              pathname === "/login" && "text-[#FF4773]"
             }`}
           >
             <li>Login</li>
           </Link>
           <Link
             to="/signup"
-            className={`hover:text-blue-400 ${
-              pathname === "/signup" && "text-blue-400"
+            className={`hover:text-[#FF4773] ${
+              pathname === "/signup" && "text-[#FF4773]"
             }`}
           >
             <li>Cadastre-se</li>
