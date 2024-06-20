@@ -1,25 +1,39 @@
-import { useEffect } from "react";
-import { LoginButton, useFacebook, useLoginStatus, useProfile } from 'react-facebook';
+import FacebookLogin from "react-facebook-login";
+import authService from "../../services/auth";
+import { useDispatch, useSelector } from "react-redux";
+import { resetState, setUser } from "../../store/reducers/user";
+import { Avatar, Button } from "antd";
 
 const APP_ID = import.meta.env.VITE_FACEBOOK_APP_ID;
 
 const Facebook = () => {
-  console.log(APP_ID);
+  const dispatch = useDispatch();
+  const loggedUser = useSelector((state) => state.user);
 
   async function handleSuccess(response) {
     try {
-      console.log(`response`, response);
-      const { authResponse } = response;
-      const { userID } = authResponse;
-      console.log(authResponse);
-      FB.api(
-        `/${userID}/accounts`,
-        function (response) {
-          if (response && !response.error) {
-            console.log('pages', response);
-          }
-        }
-      );
+      const { name, email, picture, accounts, accessToken, userID } = response;
+
+      const pages = accounts.data
+        ? accounts.data.map((page) => ({
+            pageId: page.id,
+            pageName: page.name,
+            pageToken: page.access_token,
+            category: page.category,
+          }))
+        : [];
+
+      const user = {
+        facebookId: userID,
+        email,
+        name,
+        facebookToken: accessToken,
+        pages,
+        picture: picture.data.url,
+      };
+      const res = await authService.facebookLogin(user);
+      const { token, user: userRes } = res.data;
+      dispatch(setUser({ user: { ...userRes, jwt: token } }));
     } catch (error) {
       console.log(error);
     }
@@ -30,19 +44,47 @@ const Facebook = () => {
   }
 
   return (
-    <section className="hero min-h-screen flex items-center justify-center">
-      <div className="bg-white p-8 rounded-lg shadow-lg w-full max-w-sm">
-        <h2 className="text-2xl font-bold mb-4 text-center">Cadastre sua conta Meta</h2>
+    <section className="flex items-center justify-center min-h-screen hero">
+      <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-lg">
+        <h2 className="mb-4 text-2xl font-bold text-center">
+          Cadastre sua conta Meta
+        </h2>
         <div className="flex justify-center">
-          <LoginButton
+          <FacebookLogin
+            appId={APP_ID}
+            fields="name,email,picture,accounts"
             scope="public_profile,email,pages_show_list,pages_read_engagement,pages_manage_posts"
-            onError={handleError}
-            onSuccess={handleSuccess}
-            className="bg-[#FF4773] text-white font-semibold py-2 px-4 rounded shadow hover:bg-[#FF003D] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
-          >
-            Login via Facebook
-          </LoginButton>
+            autoLoad={true}
+            callback={handleSuccess}
+            onFailure={handleError}
+            cssClass={`bg-[#FF4773] text-white font-semibold py-2 px-4 rounded shadow ${
+              !loggedUser.jwt && "hover:bg-[#FF003D]"
+            } focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75`}
+            language="pt_Br"
+            isDisabled={loggedUser.jwt}
+          />
         </div>
+        {loggedUser.jwt && (
+          <>
+            <div className="flex items-center w-full h-10 my-2 ">
+              <Avatar
+                shape="square"
+                className="w-auto h-full"
+                src={loggedUser.picture}
+              />
+              <span>Logado como: {loggedUser.name}.</span>
+            </div>
+            <Button
+              onClick={() => {
+                dispatch(resetState());
+              }}
+              danger
+              className="flex items-center justify-center w-full px-4 py-2 mt-4 font-bold text-white rounded"
+            >
+              Sair
+            </Button>
+          </>
+        )}
       </div>
     </section>
   );
