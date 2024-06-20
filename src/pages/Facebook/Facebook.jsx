@@ -1,16 +1,14 @@
-import FacebookLogin from "react-facebook-login";
 import authService from "../../services/auth";
 import { useDispatch, useSelector } from "react-redux";
 import { resetState, setUser } from "../../store/reducers/user";
 import { Avatar, Button } from "antd";
-
-const APP_ID = import.meta.env.VITE_FACEBOOK_APP_ID;
+import { LoginButton } from "react-facebook";
 
 const Facebook = () => {
   const dispatch = useDispatch();
   const loggedUser = useSelector((state) => state.user);
 
-  async function handleSuccess(response) {
+  async function handleCompleteLogin(response) {
     try {
       const { name, email, picture, accounts, accessToken, userID } = response;
 
@@ -43,6 +41,23 @@ const Facebook = () => {
     console.log(error);
   }
 
+  async function handleSuccess(response) {
+    try {
+      const { authResponse } = response;
+      const { userID, accessToken } = authResponse;
+
+      FB.api(
+        "/me",
+        { fields: "name,email,picture,accounts" },
+        async function (response) {
+          await handleCompleteLogin({ ...response, userID, accessToken });
+        }
+      );
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
   return (
     <section className="flex items-center justify-center min-h-screen hero">
       <div className="w-full max-w-sm p-8 bg-white rounded-lg shadow-lg">
@@ -50,19 +65,14 @@ const Facebook = () => {
           Cadastre sua conta Meta
         </h2>
         <div className="flex justify-center">
-          <FacebookLogin
-            appId={APP_ID}
-            fields="name,email,picture,accounts"
+          <LoginButton
             scope="public_profile,email,pages_show_list,pages_read_engagement,pages_manage_posts"
-            autoLoad={true}
-            callback={handleSuccess}
-            onFailure={handleError}
-            cssClass={`bg-[#FF4773] text-white font-semibold py-2 px-4 rounded shadow ${
-              !loggedUser.jwt && "hover:bg-[#FF003D]"
-            } focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75`}
-            language="pt_Br"
-            isDisabled={loggedUser.jwt}
-          />
+            onError={handleError}
+            onSuccess={handleSuccess}
+            className="bg-[#FF4773] text-white font-semibold py-2 px-4 rounded shadow hover:bg-[#FF003D] focus:outline-none focus:ring-2 focus:ring-blue-400 focus:ring-opacity-75"
+          >
+            Login via Facebook
+          </LoginButton>
         </div>
         {loggedUser.jwt && (
           <>
