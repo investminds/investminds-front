@@ -17,7 +17,7 @@ const Chatbot = () => {
     setStatus('Loading...');
     setMessage('');
 
-    fetch("https://api.openai.com/v1/completions", {
+    fetch('https://api.openai.com/v1/chat/completions', {
       method: 'POST',
       headers: {
         Accept: 'application/json',
@@ -25,9 +25,11 @@ const Chatbot = () => {
         Authorization: `Bearer ${apiKey}`
       },
       body: JSON.stringify({
-        model: 'gpt-3.5-turbo-instruct',
-        prompt: message,
-        max_tokens: 2048,
+        model: 'gpt-4o-mini',
+        messages: [
+          { role: 'user', content: message }
+        ],
+        max_tokens: 150,
         temperature: 0.5
       })
     })
