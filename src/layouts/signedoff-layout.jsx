@@ -1,7 +1,7 @@
 import { Outlet } from "react-router-dom";
 import Navbar from "../components/Navbar";
 
-const SignedInLayout = () => {
+const SignedOffLayout = () => {
   return (
     <div className="bg-[#f7eddd] min-h-svh">
       <Navbar />
@@ -12,4 +12,4 @@ const SignedInLayout = () => {
   );
 };
 
-export default SignedInLayout;
+export default SignedOffLayout;

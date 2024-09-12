@@ -1,15 +1,15 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import SignedInLayout from "../layouts/signedin-layout";
+import SignedOffLayout from "../layouts/signedoff-layout";
 import Facebook from "../pages/Facebook/Facebook"
 import About from "../pages/About/About";
 import Login from "../pages/Login/Login";
 import SignUp from "../pages/SignUp/SignUp";
 
-const signedInRouter = createBrowserRouter([
+const signedOffRouter = createBrowserRouter([
   {
     path: "/",
-    element: <SignedInLayout />,
+    element: <SignedOffLayout />,
     children: [
       {
         index: true,
@@ -35,4 +35,4 @@ const signedInRouter = createBrowserRouter([
   },
 ]);
 
-export default signedInRouter;
+export default signedOffRouter;
