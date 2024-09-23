@@ -1,42 +1,97 @@
 import { createBrowserRouter } from "react-router-dom";
 import Home from "../pages/Home/Home";
-import SignedInLayout from "../layouts/signedin-layout";
-import Facebook from "../pages/Facebook/Facebook"
 import About from "../pages/About/About";
-import Login from "../pages/Login/Login";
-import SignUp from "../pages/SignUp/SignUp";
+import Products from "../pages/Products/Products";
+import ProductsDetails from "../pages/ProductsDetails/ProductsDetails";
+import ConsumerLayout from "../layouts/consumer-layout";
+import AdvertiserLayout from "../layouts/advertiser-layout";
+import CreateProduct from "../pages/CreateProduct/CreateProduct";
+import OwnProducts from "../pages/OwnProducts/OwnProducts";
+import FacebookCampaigns from "../pages/FacebookCampaings/FacebookCampaings";
+import Subscription from "../pages/Subscription/Subscription";
+import Profile from "../pages/Profile/Profile";
 
-const signedInRouter = createBrowserRouter([
+const defaultRoutes = [
+  {
+    path: "about",
+    element: <About />,
+  },
+];
+
+const consumerRouter = createBrowserRouter([
   {
     path: "/",
-    element: <SignedInLayout />,
+    element: <ConsumerLayout />,
     children: [
+      ...defaultRoutes,
       {
         index: true,
         element: <Home />,
       },
       {
-        path: "/facebook",
-        element: <Facebook />,
+        path: "profile",
+        element: <Profile />,
       },
       {
-        path: "/about",
-        element: <About />,
+        path: "products",
+        element: <Products />,
       },
       {
-        path: "/login",
-        element: <Login />,
+        path: "products/:id",
+        element: <ProductsDetails />,
       },
       {
-        path: "/signup",
-        element: <SignUp />,
+        path: "subscription",
+        element: <Subscription />,
       },
       {
-        path: "/*",
+        path: "*",
         element: <h1>Not Found</h1>,
       },
     ],
   },
 ]);
 
-export default signedInRouter;
+const advertiserRouter = createBrowserRouter([
+  {
+    path: "/",
+    element: <AdvertiserLayout />,
+    children: [
+      ...defaultRoutes,
+      {
+        index: true,
+        element: <Home />,
+      },
+      {
+        path: "profile",
+        element: <Profile />,
+      },
+      {
+        path: "products",
+        element: <OwnProducts />,
+      },
+      {
+        path: "products/create",
+        element: <CreateProduct />,
+      },
+      {
+        path: "products/edit/:id",
+        element: <CreateProduct />,
+      },
+      {
+        path: "products/:id",
+        element: <ProductsDetails />,
+      },
+      {
+        path: "publications/create",
+        element: <FacebookCampaigns />,
+      },
+      {
+        path: "*",
+        element: <h1>Not Found</h1>,
+      },
+    ],
+  },
+]);
+
+export default { consumerRouter, advertiserRouter };
