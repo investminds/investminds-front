@@ -96,5 +96,5 @@ export default {
   resetPassword,
   linkFacebookAccount,
   updateUserbByFields,
-  updatePassword
+  updatePassword,
 };
