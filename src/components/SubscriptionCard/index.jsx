@@ -41,7 +41,11 @@ const SubscriptionCard = ({
       <Card
         color="gray"
         variant="gradient"
-        className="w-full p-8 rounded-md bg-[#FF4773] h-full flex flex-col justify-between"
+        className={`w-full p-8 rounded-md h-full flex flex-col justify-between ${
+          disabled
+            ? "bg-gray-400 cursor-not-allowed opacity-50"
+            : "bg-[#FF4773]"
+        }`}
       >
         <CardHeader
           floated={false}
@@ -84,10 +88,15 @@ const SubscriptionCard = ({
           <Button
             size="lg"
             color="white"
-            className="hover:scale-[1.02] focus:scale-[1.02] active:scale-100 p-2 text-gray-500"
+            className={`p-2 text-gray-500 ${
+              disabled
+                ? "cursor-not-allowed opacity-50"
+                : "hover:scale-[1.02] focus:scale-[1.02] active:scale-100"
+            }`}
             ripple={false}
             fullWidth={true}
             onClick={handleSelect}
+            disabled={disabled}
           >
             SELECIONAR PLANO
           </Button>

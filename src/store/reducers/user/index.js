@@ -6,7 +6,7 @@ const initialState = {
   picture: null,
   pages: [],
   jwt: null,
-  subscription: null,
+  subscriptions: null,
   role: null,
   facebookId: null,
   threadId: null,
@@ -35,7 +35,7 @@ const userSlice = createSlice({
       state.jwt = action.payload;
     },
     setSubscription: (state, action) => {
-      state.subscription = action.payload;
+      state.subscriptions = action.payload;
     },
     setRole: (state, action) => {
       state.role = action.payload;
@@ -79,6 +79,7 @@ export const {
   addMessage,
   addOldMessages,
   setUserPicture,
+  setSubscription,
 } = userSlice.actions;
 
 export default userSlice.reducer;

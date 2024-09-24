@@ -1,5 +1,14 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Avatar, Button, Empty, Input, Space, Spin, Upload } from "antd";
+import {
+  Avatar,
+  Button,
+  Empty,
+  Input,
+  Space,
+  Spin,
+  Tooltip,
+  Upload,
+} from "antd";
 import PageTitle from "../../components/PageTitle";
 import { useEffect, useState } from "react";
 import { FaImage } from "react-icons/fa";
@@ -10,11 +19,12 @@ import { LoginButton } from "react-facebook";
 import { Link } from "react-router-dom";
 import authService from "../../services/auth";
 import bffService from "../../services/bff";
+import { RiPriceTag2Fill } from "react-icons/ri";
 
 const Profile = () => {
   const user = useSelector((state) => state.user);
+
   const dispatch = useDispatch();
-  const [imageUrl, setImageUrl] = useState("");
   const [imageList, setImageList] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [uploading, setUploading] = useState(false);
@@ -107,9 +117,9 @@ const Profile = () => {
 
   const loadSubscriptions = async () => {
     try {
-      const res = await bffService.getSubscriptions();
-      console.log("Subscriptions", res);
-      setSubscriptions(res.subscriptions);
+      const userData = await authService.getUserSubscriptions(user.id);
+      const { subscriptions } = userData;
+      setSubscriptions(subscriptions);
     } catch (error) {
       console.log(error);
     }
@@ -266,22 +276,29 @@ const Profile = () => {
                 subscriptions.map((subscription) => (
                   <div
                     key={subscription.subscriptionId}
-                    className="flex p-4 space-x-2 text-sm text-gray-400 bg-gray-200 rounded-md"
+                    className="flex items-center justify-between p-4 space-x-2 text-sm text-gray-400 bg-gray-200 rounded-md"
                   >
                     <p>
                       Início:{" "}
-                      {new Date(
-                        subscription.startsAt * 1000
-                      ).toLocaleDateString()}
+                      {new Date(subscription.createdAt).toLocaleDateString()}
                     </p>
                     <p>
                       Fim:{" "}
                       {new Date(
-                        subscription.endsAt * 1000
+                        subscription.endDate || new Date()
                       ).toLocaleDateString()}
                     </p>
+                    <p> Categoria: {subscription.category}</p>
                     <p> Preço: R${(subscription.price / 100).toFixed(2)}</p>
                     <p>Plano {subscription.isActive ? "ativo" : "inativo"}</p>
+                    {subscription.invoiceUrl && (
+                      <Tooltip title="Ver Fatura">
+                        <a target="_blank" href={subscription.invoiceUrl}>
+                          {" "}
+                          <RiPriceTag2Fill color="green" size={20} />
+                        </a>
+                      </Tooltip>
+                    )}
                   </div>
                 ))
               ) : (

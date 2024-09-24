@@ -88,6 +88,14 @@ const updatePassword = async (newPassword) => {
   });
 };
 
+const getUserSubscriptions = async (userId) => {
+  const res = await api.get(
+    `${AUTH_API_BASE_URL}/api/profile/subscriptions/${userId}`
+  );
+  const user = res.data;
+  return user;
+};
+
 export default {
   facebookLogin,
   login,
@@ -97,4 +105,5 @@ export default {
   linkFacebookAccount,
   updateUserbByFields,
   updatePassword,
+  getUserSubscriptions,
 };

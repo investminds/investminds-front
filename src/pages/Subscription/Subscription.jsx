@@ -141,6 +141,7 @@ const Subscription = () => {
                     price={(plan.price / 100).toFixed(2)}
                     benefits={plan.benefits}
                     handleSelect={() => setSelectedPlan(plan)}
+                    disabled={plan.name.toLowerCase().includes(subscriptions.category.toLowerCase())}
                   />
                 ))}
               </>

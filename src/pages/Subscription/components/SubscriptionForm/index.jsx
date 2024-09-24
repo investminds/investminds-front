@@ -7,10 +7,11 @@ import {
   CardExpiryElement,
   CardNumberElement,
 } from "@stripe/react-stripe-js";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import bffService from "../../../../services/bff";
 import { Button, Result } from "antd";
 import { Link } from "react-router-dom";
+import { setSubscription } from "../../../../store/reducers/user";
 
 const useOptions = () => {
   const options = useMemo(
@@ -40,7 +41,7 @@ const inputClasses =
   "block p-2.5 px-3.5 text-base font-mono rounded-md bg-white border-2";
 
 const SubscriptionForm = ({ selectedPlan, handlePayment }) => {
-  console.log(selectedPlan);
+  const dispatch = useDispatch();
   const userEmail = useSelector((state) => state.user.email);
   const stripe = useStripe();
   const elements = useElements();
@@ -79,7 +80,8 @@ const SubscriptionForm = ({ selectedPlan, handlePayment }) => {
       };
 
       const response = await bffService.createSubscription(subscriptionData);
-      console.log(response);
+      const subscription = { category: response.planMapped, isActive: true };
+      dispatch(setSubscription(subscription));
 
       const { clientSecret } = response;
 
@@ -109,10 +111,10 @@ const SubscriptionForm = ({ selectedPlan, handlePayment }) => {
         <Result
           status="success"
           title={`${selectedPlan.name}`}
-          subTitle="Sua assinatura foi realizada com sucesso. Os recursos serão disponibilizados em breve e os detalhes estarão disponíveis em seu perfil!"
+          subTitle="Sua assinatura foi realizada com sucesso. Os recursos serão disponibilizados em breve e os detalhes estarão disponíveis em seu perfil! Caso demore, realize login novamente."
           extra={[
             <Button type="primary" key="console">
-               <Link to="/profile">Ir para seu perfil</Link>
+              <Link to="/profile">Ir para seu perfil</Link>
             </Button>,
             <Button key="buy">
               <Link to="/products">Confira os produtos</Link>
