@@ -25,7 +25,9 @@ const uploadFileFromList = async (fileList) => {
   );
 
   console.log("imagesUploaded", imagesUploaded);
-  const imgsUrls = imagesUploaded.map((response) => response.url);
+  const imgsUrls = imagesUploaded.map((response) =>
+    response.url.replace(/\\/g, "")
+  );
   return imgsUrls;
 };
 
