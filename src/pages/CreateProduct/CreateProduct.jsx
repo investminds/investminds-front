@@ -3,7 +3,7 @@ import { Form, Input, Select, Upload, Button, Tooltip } from "antd";
 import { IoMdCloudUpload } from "react-icons/io";
 import { toast } from "react-toastify";
 import softwareCatalog from "../../services/software-catalog";
-import { useLocation, useNavigate, useParams } from "react-router-dom";
+import { useLocation, useNavigate } from "react-router-dom";
 import PageTitle from "../../components/PageTitle";
 import imgbbService from "../../services/imgbb";
 import { FaTrash } from "react-icons/fa";
@@ -12,8 +12,6 @@ const { Option } = Select;
 
 const planCategories = ["Free", "Basic", "Premium", "VIP"];
 const categories = ["Tech", "Cripto", "Ouro", "Outros"];
-
-const API_KEY = import.meta.env.VITE_UPLOAD_IMAGES_API_KEY;
 
 const CreateProduct = () => {
   const [form] = Form.useForm();
@@ -24,9 +22,7 @@ const CreateProduct = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const { id } = useParams();
   const softwareToEdit = location.state;
-  console.log(softwareToEdit);
 
   const onFinish = async (values) => {
     try {
@@ -77,12 +73,10 @@ const CreateProduct = () => {
         changedFields[key] = values[key];
       }
     }
-    console.log(changedFields);
     const payload = {
       ...changedFields,
       images: [...imagesToEdit, ...imagesUrls],
     };
-    console.log(payload);
     softwareCatalog
       .updateSoftware(softwareToEdit._id, payload)
       .then(() => {

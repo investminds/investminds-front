@@ -202,8 +202,6 @@ const AssistantChat = () => {
                     ref={inputRef}
                     onKeyDown={(e) => {
                       if (e.key === "Enter") {
-                        console.log("press");
-                        console.log(e.target.value);
                         handleSendMessage(e.target.value);
                         e.target.value = "";
                       }

@@ -10,7 +10,6 @@ const { Meta } = Card;
 
 const Products = () => {
   const user = useSelector((state) => state.user);
-  console.log(user);
   const [isLoading, setIsLoading] = useState(false);
   const [softwareList, setSoftwareList] = useState([]);
 
@@ -21,7 +20,6 @@ const Products = () => {
       const res = await softwareCatalogService.getSoftwaresList();
       setSoftwareList(res);
       setIsLoading(false);
-      console.log(res);
     } catch (error) {
       setIsLoading(false);
       toast.error("Erro ao buscar a lista de softwares");

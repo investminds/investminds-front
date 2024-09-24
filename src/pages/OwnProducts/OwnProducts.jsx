@@ -31,7 +31,6 @@ const OwnProducts = () => {
         const softwares = await softwareCatalog.findByOwner(id);
         setSoftwareList(softwares);
         setIsLoading(false);
-        console.log(softwares);
       } catch (error) {
         console.log(error);
         setIsLoading(false);

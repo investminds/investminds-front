@@ -19,12 +19,10 @@ const uploadFileFromList = async (fileList) => {
       );
 
       const { data } = await response.json();
-      console.log("data", data);
       return data;
     })
   );
 
-  console.log("imagesUploaded", imagesUploaded);
   const imgsUrls = imagesUploaded.map((response) =>
     response.url.replace(/\\/g, "")
   );

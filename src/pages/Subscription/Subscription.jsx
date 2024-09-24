@@ -40,7 +40,6 @@ const Subscription = () => {
       setIsLoading(true);
       const plans = await bffService.listActivePlans();
       const { activePlans } = plans;
-      console.log(plans);
       setPlans(activePlans);
       setIsLoading(false);
     } catch (error) {

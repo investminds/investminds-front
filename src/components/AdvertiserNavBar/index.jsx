@@ -99,11 +99,8 @@ const AdvertiserNavBar = () => {
   const [collapsed, setCollapsed] = useState(true);
 
   const handleLogout = () => {
-    console.log("logout");
     localStorage.removeItem("access_token");
     localStorage.removeItem("threadId");
-    console.log("logout");
-    console.log(localStorage.getItem("threadId"));
     dispatch(resetState());
     navigate("/", { replace: true });
   };

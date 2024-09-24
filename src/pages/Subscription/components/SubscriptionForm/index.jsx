@@ -62,8 +62,6 @@ const SubscriptionForm = ({ selectedPlan, handlePayment }) => {
         card: elements.getElement(CardNumberElement),
       });
 
-      console.log(paymentMethodRes);
-
       if (paymentMethodRes.error) {
         setError(paymentMethodRes.error.message);
         handlePayment(false);

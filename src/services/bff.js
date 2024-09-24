@@ -48,7 +48,6 @@ const sendMessageToAssistant = async (threadId, message, onChunkReceived) => {
         onChunkReceived(parsed[0]?.text?.value);
       }
     }
-    console.log(response);
     return response.data;
   } catch (error) {
     console.error(error);
@@ -100,7 +99,6 @@ const createSubscription = async (subscriptionData) => {
       `/api/bff/payment/subscription`,
       subscriptionData
     );
-    console.log(response);
     return response.data;
   } catch (error) {
     throw new Error(error);
@@ -110,7 +108,6 @@ const createSubscription = async (subscriptionData) => {
 const getSubscriptions = async () => {
   try {
     const response = await api.get(`/api/bff/payment/subscriptions`);
-    console.log(response);
     return response.data;
   } catch (error) {
     throw new Error(error);

@@ -70,13 +70,11 @@ const FacebookCampaigns = () => {
 
   useEffect(() => {
     if (selectedPage) {
-      console.log("selectedPage", selectedPage);
       const selectPages = async () => {
         const posts = await fetch(
           `https://graph.facebook.com/v20.0/${selectedPage.id}/feed?access_token=${selectedPage.token}`
         );
         const postsData = await posts.json();
-        console.log("Postst", postsData);
       };
       selectPages();
     }
@@ -253,7 +251,6 @@ const FacebookCampaigns = () => {
                                 <DatePicker
                                   value={date}
                                   onChange={(value) => {
-                                    console.log(new Date(value).getTime());
                                     setDate(value);
                                   }}
                                   showTime

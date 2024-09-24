@@ -14,7 +14,10 @@ import {
   Tag,
   Tooltip,
 } from "antd";
-import { subscriptionColorsmap, archiveColorsmap } from "../OwnProducts/OwnProducts";
+import {
+  subscriptionColorsmap,
+  archiveColorsmap,
+} from "../OwnProducts/OwnProducts";
 import { CiLink } from "react-icons/ci";
 import PageTitle from "../../components/PageTitle";
 import { useSelector } from "react-redux";
@@ -70,9 +73,7 @@ const ProductsDetails = () => {
         isAnonymous,
       };
 
-      const response = await softwareCatalog.addReview(payload);
-
-      console.log("response", response);
+      await softwareCatalog.addReview(payload);
 
       toast.success("Feedback enviado com sucesso!");
       setUserRate(3.5);
